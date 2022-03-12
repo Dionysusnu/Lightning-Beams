@@ -153,13 +153,14 @@ interface LightningBoltConstructor {
 	 * local A1, A2 = {}, {}
 	 * A1.WorldPosition, A1.WorldAxis = chosenPos1, chosenAxis1
 	 * A2.WorldPosition, A2.WorldAxis = chosenPos2, chosenAxis2
-	 * local NewBolt = LightningBolt.new(A1, A2, 40)
+	 * local NewBolt = LightningBolt.new(A1, A2, 30)
 	 * ```
+	 * `partCount` defaults to 30 if not specified.
 	 */
 	new (
 		attachment0: Attachment | FakeAttachment,
 		attachment1: Attachment | FakeAttachment,
-		partCount: number,
+		partCount?: number,
 	): LightningBolt;
 }
 
