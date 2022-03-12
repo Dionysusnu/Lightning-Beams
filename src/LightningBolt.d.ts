@@ -1,4 +1,4 @@
-interface FakeAttachment {
+interface CustomAttachment {
 	WorldPosition: Vector3;
 	WorldAxis: Vector3;
 }
@@ -19,12 +19,12 @@ interface LightningBolt {
 	/**
 	 * Bolt originates from Attachment0 and ends at Attachment1
 	 */
-	Attachment0: Attachment | FakeAttachment;
+	Attachment0: CustomAttachment;
 
 	/**
 	 * Bolt originates from Attachment0 and ends at Attachment1
 	 */
-	Attachment1: Attachment | FakeAttachment;
+	Attachment1: CustomAttachment;
 
 	/**
 	 * Works similarly to roblox beams.
@@ -148,20 +148,21 @@ interface LightningBolt {
 
 interface LightningBoltConstructor {
 	/**
-	 * Small tip: You don't need to use actual Roblox Attachments below. You can also create "fake" ones as follows:
-	 * ```lua
-	 * local A1, A2 = {}, {}
-	 * A1.WorldPosition, A1.WorldAxis = chosenPos1, chosenAxis1
-	 * A2.WorldPosition, A2.WorldAxis = chosenPos2, chosenAxis2
-	 * local NewBolt = LightningBolt.new(A1, A2, 30)
+	 * You don't need to use actual Roblox Attachments. You can also create custom ones as follows:
+	 * ```ts
+	 * const customAttachment1 = {
+	 * 	WorldPosition: customPosition1,
+	 * 	WorldAxis: customAxis1,
+	 * };
+	 * const customAttachment2 = {
+	 * 	WorldPosition: customPosition2,
+	 * 	WorldAxis: customAxis2,
+	 * };
+	 * const bolt = new LightningBolt(customAttachment1, customAttachment2);
 	 * ```
 	 * `partCount` defaults to 30 if not specified.
 	 */
-	new (
-		attachment0: Attachment | FakeAttachment,
-		attachment1: Attachment | FakeAttachment,
-		partCount?: number,
-	): LightningBolt;
+	new (attachment0: CustomAttachment, attachment1: CustomAttachment, partCount?: number): LightningBolt;
 }
 
 declare const LightningBolt: LightningBoltConstructor;
